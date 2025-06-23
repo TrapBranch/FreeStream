@@ -1,0 +1,20 @@
+services:
+  freestream:
+    build: .
+    container_name: freestream
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_BASE=https://jszyapi.com/api.php/provide/vod/
+      - NEXT_PUBLIC_API_BASE=https://jszyapi.com/api.php/provide/vod/
+    restart: unless-stopped
+    volumes:
+      # Optional: mount a volume for logs
+      - ./logs:/app/logs
+    networks:
+      - freestream-network
+
+networks:
+  freestream-network:
+    driver: bridge 
